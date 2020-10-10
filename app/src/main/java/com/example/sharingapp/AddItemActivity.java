@@ -124,4 +124,8 @@ public class AddItemActivity extends AppCompatActivity {
             photo.setImageBitmap(image);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cff792a481537745bff419da060b358253f561ef

@@ -112,7 +112,6 @@ public class Item {
             image = new_image;
             ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
             new_image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
-
             byte[] b = byteArrayBitmapStream.toByteArray();
             image_base64 = Base64.encodeToString(b, Base64.DEFAULT);
         }

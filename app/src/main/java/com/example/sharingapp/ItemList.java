@@ -62,7 +62,6 @@ public class ItemList {
     }
 
     public void loadItems(Context context) {
-
         try {
             FileInputStream fis = context.openFileInput(FILENAME);
             InputStreamReader isr = new InputStreamReader(fis);
