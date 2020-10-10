@@ -17,17 +17,19 @@ import java.util.ArrayList;
 /**
  * ContactList class
  */
-public class ContactList {
+public class ContactList extends Observable {
 
     private static ArrayList<Contact> contacts;
     private String FILENAME = "contacts.sav";
 
     public ContactList() {
         contacts = new ArrayList<Contact>();
+        notifyObservers();
     }
 
     public void setContacts(ArrayList<Contact> contact_list) {
         contacts = contact_list;
+        notifyObservers();
     }
 
     public ArrayList<Contact> getContacts() {
@@ -44,10 +46,12 @@ public class ContactList {
 
     public void addContact(Contact contact) {
         contacts.add(contact);
+        notifyObservers();
     }
 
     public void deleteContact(Contact contact) {
         contacts.remove(contact);
+        notifyObservers();
     }
 
     public Contact getContact(int index) {
@@ -110,6 +114,7 @@ public class ContactList {
         } catch (IOException e) {
             contacts = new ArrayList<Contact>();
         }
+        notifyObservers();
     }
 
     public boolean saveContacts(Context context) {
@@ -129,4 +134,5 @@ public class ContactList {
         }
         return true;
     }
+
 }
