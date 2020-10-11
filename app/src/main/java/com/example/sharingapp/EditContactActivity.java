@@ -26,6 +26,8 @@ public class EditContactActivity extends AppCompatActivity implements Observer {
     private boolean on_create_update = false;
     private int pos;
 
+    private String email_str;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +51,7 @@ public class EditContactActivity extends AppCompatActivity implements Observer {
 
     public void saveContact(View view) {
 
-        String email_str = email.getText().toString();
-
-        if (email_str.equals("")) {
-            email.setError("Empty field!");
-            return;
-        }
-
-        if (!email_str.contains("@")){
-            email.setError("Must be an email address!");
+        if (!validateInput()) {
             return;
         }
 
@@ -74,8 +68,6 @@ public class EditContactActivity extends AppCompatActivity implements Observer {
         Contact updated_contact = new Contact(username_str, email_str, id);
 
         // Edit Contact
-        ContactController contactController = new ContactController(updated_contact);
-
         boolean success = contact_list_controller.editContact(contact, updated_contact, context);
         if (!success){
             return;
@@ -112,5 +104,24 @@ public class EditContactActivity extends AppCompatActivity implements Observer {
             username.setText(contact_controller.getUsername());
             email.setText(contact_controller.getEmail());
         }
+    }
+
+    public boolean validateInput() {
+
+        boolean validData = true;
+
+        email_str = email.getText().toString();
+
+        if (email_str.equals("")) {
+            email.setError("Empty field!");
+            validData = false;
+        }
+
+        if (!email_str.contains("@")){
+            email.setError("Must be an email address!");
+            validData = false;
+        }
+
+        return validData;
     }
 }
